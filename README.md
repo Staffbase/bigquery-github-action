@@ -1,3 +1,5 @@
+<!-- TODO adjust -->
+
 # Staffbase Open Source Repository Template
 
 This repository should be used as a template or model for projects we like to publish as Open Source.
