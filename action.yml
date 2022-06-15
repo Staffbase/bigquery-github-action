@@ -41,12 +41,8 @@ runs:
       with:
         credentials_json: "${{ inputs.credentials_json }}"
         token_format: 'access_token'
+        access_token_scopes: 'https://www.googleapis.com/auth/bigquery.insertdata'
         access_token_lifetime: "${{ inputs.token_lifetime }}"
-
-    # automatically uses authentication from `auth`.
-    - id: gcloud
-      name: Set up Cloud SDK
-      uses: 'google-github-actions/setup-gcloud@v0'
 
     - id: write
       name: Write to BigQuery
