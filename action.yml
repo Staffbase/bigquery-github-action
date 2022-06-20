@@ -1,0 +1,57 @@
+name: 'Write to Google BigQuery'
+author: 'Staffbase GmbH'
+description: |-
+  This GitHub Action can be used to write data to Google BigQuery from within a GitHub workflow.
+  The GitHub Action authenticates with a Google Cloud Service Account and uses the provided token for writing to BigQuery.
+  It sends a POST request against the insertAll API endpoint.
+  As a prerequisite the action actions/checkout@v3 needs to be run first.
+
+inputs:
+  credentials_json:
+    description: |-
+      The credentials key for the Service Account user used for authentication in JSON format.
+      This is forwarded to the google-github-actions/auth@v0 action.
+    required: true
+  token_lifetime:
+    description: |-
+      The lifetime of the generated auth token in seconds. The default is 30s.
+      This is forwarded to the google-github-actions/auth@v0 action.
+    required: false
+    default: 30s
+  bigquery_project:
+    description: 'The Project ID of the project to write to.'
+    required: true
+  bigquery_dataset:
+    description: 'The Dataset ID inside the project to write to.'
+    required: true
+  bigquery_table:
+    description: 'The Table ID inside the dataset to write to.'
+    required: true
+  payload_json:
+    description: |-
+      The payload to be written into the referenced table in JSON format. It must reflect the schema of the table.
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: "${{ inputs.credentials_json }}"
+        token_format: 'access_token'
+        access_token_scopes: 'https://www.googleapis.com/auth/bigquery.insertdata'
+        access_token_lifetime: "${{ inputs.token_lifetime }}"
+
+    - id: write
+      name: Write to BigQuery
+      shell: bash
+      run: |
+        curl --request POST \
+          'https://bigquery.googleapis.com/bigquery/v2/projects/${{ inputs.bigquery_project }}/datasets/${{ inputs.bigquery_dataset }}/tables/${{ inputs.bigquery_table }}/insertAll' \
+          --header 'Authorization: Bearer ${{ steps.auth.outputs.access_token }}' \
+          --header 'Accept: application/json' \
+          --header 'Content-Type: application/json' \
+          --data '{"rows":[{"json": ${{ inputs.payload_json }} }]}' \
+          --compressed
