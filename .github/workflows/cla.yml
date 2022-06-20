@@ -25,4 +25,4 @@ jobs:
           # branch should not be protected
           branch: 'signatures'
           # no allowlist currently
-          # allowlist: user1,user2,bot*
+          allowlist: jreimone
