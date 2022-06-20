@@ -33,12 +33,14 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
 
 ### Inputs
 
-- `credentials_json` (required) - The credentials key for the Service Account user used for authentication in JSON format. This is forwarded to the [`google-github-actions/auth@v0`](https://github.com/google-github-actions/auth) action.
-- `token_lifetime` (optional) - The lifetime of the generated auth token in seconds. The default is 30s. This is forwarded to the [`google-github-actions/auth@v0`](https://github.com/google-github-actions/auth) action.
-- `bigquery_project` (required) - The Project ID of the project to write to.
-- `bigquery_dataset` (required) - The Dataset ID inside the project to write to.
-- `bigquery_table` (required) - The Table ID inside the dataset to write to.
-- `payload_json` (required) - The payload to be written into the referenced table in JSON format. It must reflect the schema of the table.
+| Input              | Description                                                  | Required |
+| ------------------ | ------------------------------------------------------------ | -------- |
+| `credentials_json` | The credentials key for the Service Account user used for authentication in JSON format. This is forwarded to the [`google-github-actions/auth@v0`](https://github.com/google-github-actions/auth) action. | true     |
+| `token_lifetime`   | The lifetime of the generated auth token in seconds. The default is 30s. This is forwarded to the [`google-github-actions/auth@v0`](https://github.com/google-github-actions/auth) action. | false    |
+| `bigquery_project` | The Project ID of the project to write to.                   | true     |
+| `bigquery_dataset` | The Dataset ID inside the project to write to.               | true     |
+| `bigquery_table`   | The Table ID inside the dataset to write to.                 | true     |
+| `payload_json`     | The payload to be written into the referenced table in JSON format. It must reflect the schema of the table. | true     |
 
 ## Contributing
 
