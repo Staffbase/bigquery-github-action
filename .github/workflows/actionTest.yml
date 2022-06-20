@@ -1,3 +1,5 @@
+name: Write to DWH demonstration
+
 on: [push]
 
 jobs:
