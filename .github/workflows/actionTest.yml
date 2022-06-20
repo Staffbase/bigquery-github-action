@@ -1,6 +1,8 @@
 name: Write to DWH demonstration
 
-on: [push]
+on:
+  push:
+    branches: [move-example-to-separate-branch]
 
 jobs:
   test_bigquery_write_job:
