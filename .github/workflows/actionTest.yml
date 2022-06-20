@@ -24,4 +24,4 @@ jobs:
           bigquery_project: 'dwh-prod-295212'
           bigquery_dataset: 'engineering'
           bigquery_table: 'bigquery-write-gha-test'
-          payload_json: '{ "property": "${{ env.TIMESTAMP }} this is a test from frontend repo"}'
+          payload_json: '{ "property": "${{ env.TIMESTAMP }} this is a test from bigquery-github-action repo"}'
