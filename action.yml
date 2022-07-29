@@ -1,10 +1,8 @@
 name: 'Write to Google BigQuery'
 author: 'Staffbase GmbH'
 description: |-
-  This GitHub Action can be used to write data to Google BigQuery from within a GitHub workflow.
-  The GitHub Action authenticates with a Google Cloud Service Account and uses the provided token for writing to BigQuery.
-  It sends a POST request against the insertAll API endpoint.
-  As a prerequisite the action actions/checkout@v3 needs to be run first.
+  Use this action to write data to Google BigQuery from within a GitHub workflow.
+  It authenticates with a Google Cloud Service Account.
 
 inputs:
   credentials_json:
