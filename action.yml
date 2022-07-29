@@ -1,7 +1,7 @@
 name: 'Write to Google BigQuery'
 author: 'Staffbase GmbH'
 description: |-
-  Use this action to write data to Google BigQuery from within a GitHub workflow.
+  Writes data to Google BigQuery from within a GitHub workflow.
   It authenticates with a Google Cloud Service Account.
 
 inputs:
