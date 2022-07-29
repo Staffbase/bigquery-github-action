@@ -53,3 +53,7 @@ runs:
           --header 'Content-Type: application/json' \
           --data '{"rows":[{"json": ${{ inputs.payload_json }} }]}' \
           --compressed
+
+branding:
+  icon: 'bar-chart'
+  color: 'blue'
