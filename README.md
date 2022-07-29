@@ -19,13 +19,12 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
     echo "TIMESTAMP=$(date --utc +%FT%T%Z)" >> $GITHUB_ENV
 
 - name: Write to DWH
-  uses: Staffbase/bigquery-github-action@main
-  id: bigquery
+  uses: Staffbase/bigquery-github-action@v1.0.0
   with:
-    credentials_json: "${{ secrets.YOUR_SERVICE_ACCOUNT_KEY }}"
-    bigquery_project: 'bq-your-project-id'
-    bigquery_dataset: 'bq-your-dataset-id'
-    bigquery_table: 'bq-your-table-id'
+    credentials_json: ${{ secrets.YOUR_SERVICE_ACCOUNT_KEY }}
+    bigquery_project: bq-your-project-id
+    bigquery_dataset: bq-your-dataset-id
+    bigquery_table: bq-your-table-id
     payload_json: '{ "property": "${{ env.TIMESTAMP }} this is a test"}'
 ```
 
@@ -40,7 +39,7 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
 | `bigquery_project` | The Project ID of the project to write to.                   | true     |
 | `bigquery_dataset` | The Dataset ID inside the project to write to.               | true     |
 | `bigquery_table`   | The Table ID inside the dataset to write to.                 | true     |
-| `payload_json`     | The payload to be written into the referenced table in JSON format. It must reflect the schema of the table. | true     |
+| `payload_json`     | The payload to be written into the referenced table in JSON format. It must reflect the schema of the table. In the above example the `property` refers to the column name in the table `bigquery_table` and `${{ env.TIMESTAMP }} this is a test` is the value written into that column. | true     |
 
 ## Contributing
 
