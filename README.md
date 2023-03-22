@@ -19,7 +19,7 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
     echo "TIMESTAMP=$(date --utc +%FT%T%Z)" >> $GITHUB_ENV
 
 - name: Write to DWH
-  uses: Staffbase/bigquery-github-action@v1.0.0
+  uses: Staffbase/bigquery-github-action@v1.0.2
   with:
     credentials_json: ${{ secrets.YOUR_SERVICE_ACCOUNT_KEY }}
     bigquery_project: bq-your-project-id
@@ -34,8 +34,8 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
 
 | Input              | Description                                                  | Required |
 | ------------------ | ------------------------------------------------------------ | -------- |
-| `credentials_json` | The credentials key for the Service Account user used for authentication in JSON format. This is forwarded to the [`google-github-actions/auth@v0`](https://github.com/google-github-actions/auth) action. | true     |
-| `token_lifetime`   | The lifetime of the generated auth token in seconds. The default is 30s. This is forwarded to the [`google-github-actions/auth@v0`](https://github.com/google-github-actions/auth) action. | false    |
+| `credentials_json` | The credentials key for the Service Account user used for authentication in JSON format. This is forwarded to the [`google-github-actions/auth`](https://github.com/google-github-actions/auth) action. | true     |
+| `token_lifetime`   | The lifetime of the generated auth token in seconds. The default is 30s. This is forwarded to the [`google-github-actions/auth`](https://github.com/google-github-actions/auth) action. | false    |
 | `bigquery_project` | The Project ID of the project to write to.                   | true     |
 | `bigquery_dataset` | The Dataset ID inside the project to write to.               | true     |
 | `bigquery_table`   | The Table ID inside the dataset to write to.                 | true     |
