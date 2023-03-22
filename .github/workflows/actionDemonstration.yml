@@ -1,0 +1,24 @@
+name: Write to DWH demonstration
+
+on:
+  push:
+    branches: [action-demonstration]
+
+jobs:
+  test_bigquery_write_job:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Collect data
+        run: |
+          echo "TIMESTAMP=$(date --utc +%FT%T%Z)" >> $GITHUB_ENV
+          
+      - name: Write to DWH
+        uses: Staffbase/bigquery-github-action@v1.0.2
+        id: bigquery
+          bigquery_project: 'dwh-prod-295212'
+          bigquery_dataset: 'engineering'
+          bigquery_table: 'bigquery-write-gha-test'
+          payload_json: '{ "property": "${{ env.TIMESTAMP }} this is a test with bigquery-github-action v1.0.2"}'
+          
