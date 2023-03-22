@@ -6,19 +6,20 @@ on:
 
 jobs:
   test_bigquery_write_job:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
 
-      - name: Collect data
-        run: |
-          echo "TIMESTAMP=$(date --utc +%FT%T%Z)" >> $GITHUB_ENV
+    - name: Collect data
+      run: |
+        echo "TIMESTAMP=$(date --utc +%FT%T%Z)" >> $GITHUB_ENV
           
-      - name: Write to DWH
-        uses: Staffbase/bigquery-github-action@v1.0.2
-        id: bigquery
-          bigquery_project: 'dwh-prod-295212'
-          bigquery_dataset: 'engineering'
-          bigquery_table: 'bigquery-write-gha-test'
-          payload_json: '{ "property": "${{ env.TIMESTAMP }} this is a test with bigquery-github-action v1.0.2"}'
+    - name: Write to DWH
+      uses: Staffbase/bigquery-github-action@v1.0.2
+      with:
+        bigquery_project: 'dwh-prod-295212'
+        bigquery_dataset: 'engineering'
+        bigquery_table: 'bigquery-write-gha-test'
+        payload_json: '{ "property": "${{ env.TIMESTAMP }} this is a test with bigquery-github-action v1.0.2"}'
           
