@@ -40,6 +40,7 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
 | `bigquery_dataset` | The Dataset ID inside the project to write to.               | true     |
 | `bigquery_table`   | The Table ID inside the dataset to write to.                 | true     |
 | `payload_json`     | The payload to be written into the referenced table in JSON format. It must reflect the schema of the table. In the above example the `property` refers to the column name in the table `bigquery_table` and `${{ env.TIMESTAMP }} this is a test` is the value written into that column. | true     |
+| `timestamp_property_to_add`   | A column name in the `bigquery_table` which is of type `TIMESTAMP`. If provided the a property with this name and the current timestamp as value (in UTC) is added to `payload_json`. | false     |
 
 ## Contributing
 
