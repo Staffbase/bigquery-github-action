@@ -54,7 +54,7 @@ runs:
     - id: process
       name: Process payload
       shell: bash
-      run: ${{github.action_path}}/scripts/process-data.sh ${{ inputs.bigquery_project }} ${{ inputs.timestamp_property_to_add }}
+      run: ${{github.action_path}}/scripts/process-data.sh '${{ inputs.payload_json }}' ${{ inputs.timestamp_property_to_add }}
 
     - id: write
       name: Write to BigQuery
