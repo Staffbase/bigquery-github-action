@@ -29,6 +29,14 @@ inputs:
     description: |-
       The payload to be written into the referenced table in JSON format. It must reflect the schema of the table.
     required: true
+  timestamp_property_to_add:
+    descritpion: |-
+      If you want to add a timestamp property to the `payload_json` you can provide the name of the property with this input.
+      The schema of the `bigquery_table` must have a column of type `TIMESTAMP` and the name of this provided value.
+      The default is the empty string `''`. In this case the `payload_json` is not modified.
+      When it's not empty the according timestamp property is added to the `payload_json`.
+    required: false
+    default: ''
 
 runs:
   using: "composite"
@@ -42,6 +50,11 @@ runs:
         access_token_scopes: 'https://www.googleapis.com/auth/bigquery.insertdata'
         access_token_lifetime: "${{ inputs.token_lifetime }}"
 
+    - id: process
+      name: Process payload
+      shell: bash
+      run: ${{github.action_path}}/scripts/process-data.sh
+
     - id: write
       name: Write to BigQuery
       shell: bash
@@ -51,7 +64,7 @@ runs:
           --header 'Authorization: Bearer ${{ steps.auth.outputs.access_token }}' \
           --header 'Accept: application/json' \
           --header 'Content-Type: application/json' \
-          --data '{"rows":[{"json": ${{ inputs.payload_json }} }]}' \
+          --data '{"rows":[{"json": ${{env.payload_json}} }]}' \
           --compressed
 
 branding:
