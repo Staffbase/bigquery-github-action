@@ -35,6 +35,7 @@ inputs:
       The schema of the `bigquery_table` must have a column of type `TIMESTAMP` and the name of this provided value.
       The default is the empty string `''`. In this case the `payload_json` is not modified.
       When it's not empty the according timestamp property is added to the `payload_json`.
+      This input is useful when the `payload_json` doesn't contain a timestamp property but you need one.
     required: false
     default: ''
 
