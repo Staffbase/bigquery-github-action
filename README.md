@@ -19,7 +19,7 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
     echo "TIMESTAMP=$(date --utc +%FT%T%Z)" >> $GITHUB_ENV
 
 - name: Write to DWH
-  uses: Staffbase/bigquery-github-action@v1.0.3
+  uses: Staffbase/bigquery-github-action@v1.0.4
   with:
     credentials_json: ${{ secrets.YOUR_SERVICE_ACCOUNT_KEY }}
     bigquery_project: bq-your-project-id
