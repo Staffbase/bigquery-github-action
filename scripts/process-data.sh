@@ -4,6 +4,12 @@
 payload_json_original="$1"
 timestamp_property_to_add="$2"
 
+# Check if payload_json_original is empty, print an error message and exit if it is
+if [[ -z "$payload_json_original" ]]; then
+  echo "Error: provided payload_json argument is empty" >&2
+  exit 1
+fi
+
 # Parse the JSON string into a shell variable
 payload_json=$(echo "$payload_json_original" | jq -c '.')
 
