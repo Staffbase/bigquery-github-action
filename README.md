@@ -8,11 +8,11 @@ It sends a POST request against the `insertAll` [API endpoint](https://cloud.goo
 
 ## Usage
 
-> ##### Note: this action requires [`actions/checkout@v3`](https://github.com/actions/checkout) to be run first
+> ##### Note: this action requires [`actions/checkout`](https://github.com/actions/checkout) to be run first
 
 ```yaml
 - name: Checkout
-  uses: actions/checkout@v3
+  uses: actions/checkout@v4
 
 - name: Collect data
   run: |
