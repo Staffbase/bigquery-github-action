@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: bigquery-github-action
+  description: GitHub Action for writing data into BigQuery from within a Github workflow
+  annotations:
+    github.com/project-slug: Staffbase/bigquery-github-action
+  tags:
+    - github-action
+    - infrastructure
+spec:
+  type: other
+  lifecycle: production
